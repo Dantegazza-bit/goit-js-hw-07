@@ -25,18 +25,19 @@ const images = [
   },
 ];
 
-console.log("task-2.js loaded");
+// 1. Знаходимо елемент ul.gallery
+const galleryEl = document.querySelector(".gallery");
 
-const gallery = document.querySelector(".gallery");
-console.log("gallery element =", gallery);
-
-const markup = images
-  .map(({ url, alt }) => `<li><img src="${url}" alt="${alt}"></li>`)
+// 2. Створюємо розмітку для всіх картинок за допомогою map + шаблонні рядки
+const galleryMarkup = images
+  .map(({ url, alt }) => {
+    return `
+      <li class="gallery-item">
+        <img src="${url}" alt="${alt}" width="360">
+      </li>
+    `;
+  })
   .join("");
 
-console.log("markup length =", markup.length);
-
-// ВАЖЛИВО: саме "beforeend" (без помилок)
-if (gallery) {
-  gallery.insertAdjacentHTML("beforeend", markup);
-}
+// 3. Додаємо всі елементи в ul.gallery однією операцією
+galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
